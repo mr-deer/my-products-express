@@ -6,6 +6,11 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "babel": {
+    "presets": [
+    "es2015"
+   ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/mr-deer/my-products-express.git"
@@ -15,5 +20,10 @@
   "bugs": {
     "url": "https://github.com/mr-deer/my-products-express/issues"
   },
-  "homepage": "https://github.com/mr-deer/my-products-express#readme"
+  "homepage": "https://github.com/mr-deer/my-products-express#readme",
+  "devDependencies": {
+    "babel-core": "^6.11.4",
+    "babel-preset-es2015": "^6.9.0",
+    "express": "^4.14.0"
+  }
 }
