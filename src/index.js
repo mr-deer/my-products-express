@@ -58,7 +58,15 @@ app.post('/list/:id/products', (req, res) => {
         res.json(list);
       })
     });
-  })
+  });
+});
+
+app.get('/list/:id/products', (req, res) => {
+  List.findOne({ _id: req.params.id }).populate('products').exec(function (err, list) {
+    if(err) return res.send(err);
+
+    res.json(list.products);
+  });
 });
 
 app.listen(3000, () => {
