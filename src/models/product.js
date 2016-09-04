@@ -1,12 +1,12 @@
 import mongoose from 'mongoose';
-import List from './list';
 
 const Schema = mongoose.Schema;
 
 const ProductSchema = Schema({
-  name: { type: String, ref: 'List' },
-  cost: { type: Number, default: 0, ref: 'List' },
-  amount: { type: Number, default: 1, ref: 'List' },
+  name: { type: String },
+  cost: { type: Number, default: 0 },
+  amount: { type: Number, default: 1 },
+  checked: { type: Boolean, default: false }
 });
 
 export default mongoose.model('Product', ProductSchema);

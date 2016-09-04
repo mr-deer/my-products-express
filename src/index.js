@@ -38,13 +38,14 @@ app.get('/lists', (req, res) => {
   })
 });
 
-app.post('/list/:id/products', (req, res) => {
-  List.findOne({ _id: req.params.id }, function (err, list) {
+app.post('/products', (req, res) => {
+  List.findOne({ _id: req.body.listId }, function (err, list) {
 
     const product = new Product({
       name: req.body.name,
       cost: req.body.cost,
       amount: req.body.amount,
+      listId: req.body.listId,
     });
 
     list.products.push(product);
@@ -61,12 +62,23 @@ app.post('/list/:id/products', (req, res) => {
   });
 });
 
-app.get('/list/:id/products', (req, res) => {
+app.get('/lists/:id', (req, res) => {
   List.findOne({ _id: req.params.id }).populate('products').exec(function (err, list) {
     if(err) return res.send(err);
 
     res.json(list.products);
   });
+});
+
+app.put('/products/:id', (req, res) => {
+  Product.update(
+    { _id: req.params.id },
+    { $set: {'checked': req.body.checked} },
+    function(err, product) {
+      if(err) return res.send(err);
+      res.send('checked');
+    }
+  );
 });
 
 app.listen(3000, () => {
